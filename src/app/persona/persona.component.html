@@ -1,0 +1,59 @@
+<!-- 
+     <div *ngFor="let OP of listas">
+        <h1>Edad: {{OP.edad}} Sexo: {{OP.sexo}} Nombre: {{OP.nombre}}</h1>
+    </div>  -->
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">EDAD</th>
+        <th scope="col">SEXO</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">APELLIDO</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+                <tr *ngFor="let OP of listas" (click)="onSelect(lista)">
+                <td>{{OP.edad}}</td>
+                <td>{{OP.sexo}}</td>
+                <td>{{OP.nombre}}</td>
+                <td>{{OP.apellido}}</td>
+                </tr>
+    </tbody>
+  </table>
+
+  <!--Mostrar usuarios disponibles-->
+<div>
+  <h1>SELECCIONA UNO:</h1>
+  <ul class="listas">
+    <li *ngFor="let lista of listas" (click)="onSelect(lista)">
+      <span class="badge"></span> {{lista.nombre}}
+    </li>
+  </ul>
+  </div>
+  
+<!-- Mostrar detalles de Usuarios -->
+  <div *ngIf="selectedHeroe" [ngClass]="{'ocultar':show == false}">
+  <hr>
+    <h2>Detalles de: {{selectedHeroe.nombre | uppercase}} </h2>
+    <div><span>Id: {{selectedHeroe.id}}<br>
+    Nombre: {{selectedHeroe.nombre}}<br>
+    Apellido: {{selectedHeroe.apellido}}<br>
+    Edad: {{selectedHeroe.edad}}<br
+    >Sexo: {{selectedHeroe.sexo}}
+    </span><br></div>
+      <div>
+      <hr>
+      <label><h4>MODICAR DATOS</h4>
+      Nombre: <input [(ngModel)]="selectedHeroe.nombre" placeholder="nombre"/><br>
+      Apellido: <input [(ngModel)]="selectedHeroe.apellido" placeholder="apellido"/><br>
+      Edad: <input [(ngModel)]="selectedHeroe.edad" placeholder="edad"/><br>
+      </label>
+    </div>
+  </div>
+  
+  <!--[ngClass]="'ocultar'"-->
+  <hr><br>
+  <button (click)="miEvento()"(click)=" show =! show"> Ocultar/Mostrar  </button>
+  
